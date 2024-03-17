@@ -1,0 +1,237 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Helvetica", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: url('../../photos/background.jpg') no-repeat fixed;
+    background-size: cover;
+    background-position: center;
+    overscroll-behavior: none;
+}
+
+/* Styles pour la barre de navigation */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.3rem 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+/* Styles pour la barre de navigation d'arriere-plan (effet blur)*/
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .1);
+    backdrop-filter: blur(50px);
+    z-index: -1;
+}
+
+/* Styles pour le logo */
+.logo img {
+    width: 50px;
+    height: auto;
+    filter: invert(1);
+}
+
+/* Styles pour que l'image du texte Harry Potter soit responsive */
+.center-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 85%;
+    height: auto;
+}
+.center-logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Styles pour la liste de navigation */
+.navbar a {
+    font-size: 1.15rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 2.5rem;
+    position: relative;
+}
+
+/* Hover effect sur la liste de navigation */
+.navbar a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    opacity: 0;
+}
+.navbar a:hover::after {
+    opacity: 1;
+}
+
+/* Checkbox du menu burger */
+#check {
+    display: none;
+}
+
+/* Styles pour l'icône du menu burger */
+.icons {
+    position: absolute;
+    right: 5%;
+    font-size: 2.8rem;
+    color: #fff;
+    cursor: pointer;
+    display: none;
+}
+
+/* Styles responsive */
+@media (max-width: 992px) {
+    .header {
+        padding: 1.3rem 5%;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Cache effet du servol */
+    .navbar a::after {
+        display: none;
+    }
+
+    /* Montrer/Cacher les icônes du menu burger */
+    .icons {
+        display: inline-flex;
+    }
+    #check:checked~.icons #menu-icon {
+        display: none;
+    }
+    .icons #close-icon {
+        display: none;
+    }
+    #check:checked~.icons #close-icon {
+        display: block;
+    }
+
+    /* Styles de la barre de navigation */
+    .navbar {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 60%;
+        height: 0;
+        background: rgba(0, 0, 0, .1);
+        backdrop-filter: blur(50px);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+        overflow: hidden;
+    }
+    #check:checked~.navbar {
+        height: 50rem;
+    }
+
+    /* Styles des liens de la barre de navigation */
+    .navbar a {
+        display: block;
+        font-size: 1.1rem;
+        padding-right: 1rem;
+        margin: 1.5rem 0;
+        text-align: right;
+        font-size: 28px;
+        opacity: 1;
+    }
+}
+.content {
+    text-align: center;
+}
+
+/* Styles du card-container */
+.card-container {
+    position: absolute;
+    top: 5%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 100px;
+}
+
+/* Styles des cartes (effet blur)*/
+.card {
+    position: relative;
+    width: 325px;
+    background-color: transparent;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, .3);
+    overflow: hidden;
+    border: 2px solid rgba(225, 225, 255, .2);
+    backdrop-filter: blur(20px);
+    color: #fff;
+    padding: 30px 40px;
+    transition: transform .6s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Hover effect sur les cartes */
+.card:hover {
+    transform: translateY(-20px);
+}
+
+/* Dimensions d'une carte */
+.card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+/* Styles flexbox */
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: flex-start;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Styles de texte dans une carte */
+.card-content h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+.card-content p {
+    font-size: 15px;
+    color:#fff;
+    margin-bottom: 20px;
+}
+
+/* Styles du bouton dans la carte */
+.card-button {
+    width: 100%;
+    height: 45px;
+    background: white;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+    align-self: flex-end;
+    margin-top: auto;
+}

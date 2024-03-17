@@ -1,0 +1,200 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Helvetica", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: url('../../photos/background.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
+/* Styles pour la barre de navigation */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.3rem 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+/* Styles pour la barre de navigation d'arriere-plan (effet blur) */
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .1);
+    backdrop-filter: blur(50px);
+    z-index: -1;
+}
+
+/* Styles pour le logo */
+.logo img {
+    width: 50px;
+    height: auto;
+    filter: invert(1);
+}
+
+/* Styles pour que l'image du texte Harry Potter soit responsive */
+.center-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 85%;
+    height: auto;
+}
+.center-logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Styles pour la liste de navigation */
+.navbar a {
+    font-size: 1.15rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 2.5rem;
+    position: relative;
+}
+
+/* Hover effect sur la liste de navigation */
+.navbar a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    opacity: 0;
+}
+.navbar a:hover::after {
+    opacity: 1;
+}
+
+/* Checkbox du menu burger */
+#check {
+    display: none;
+}
+
+/* Styles pour l'icône du menu burger */
+.icons {
+    position: absolute;
+    right: 5%;
+    font-size: 2.8rem;
+    color: #fff;
+    cursor: pointer;
+    display: none;
+}
+
+/* Styles responsive */
+@media (max-width: 992px) {
+    .header {
+        padding: 1.3rem 5%;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Cacher hover effect */
+    .navbar a::after {
+        display: none;
+    }
+
+    /* Montrer/Cacher les icônes du menu burger */
+    .icons {
+        display: inline-flex;
+    }
+    .icons #close-icon {
+        display: none;
+    }
+    #check:checked~.icons #menu-icon {
+        display: none;
+    }
+    #check:checked~.icons #close-icon {
+        display: block;
+    }
+
+    /* Styles de la barre de navigation (effet blur)*/
+    .navbar {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 60%;
+        height: 0;
+        background: rgba(0, 0, 0, .1);
+        backdrop-filter: blur(50px);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+        overflow: hidden;
+    }
+    #check:checked~.navbar {
+        height: 50rem;
+    }
+
+    /* Styles des liens de la barre de navigation */
+    .navbar a {
+        display: block;
+        font-size: 1.1rem;
+        padding-right: 1rem;
+        margin: 1.5rem 0;
+        text-align: right;
+        font-size: 28px;
+        opacity: 1;
+    }
+}
+
+/* Styles flexbox */
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.content {
+    text-align: center;
+}
+
+/* Styles du bouton */
+.btn {
+    margin-top: 25px;
+    background-color: rgba(225, 225, 225, .2);
+    color: white;
+    padding: .5em 1em;
+    border: none;
+    outline: none;
+    position: relative;
+    cursor: pointer;
+    font-size: 25px;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .3);
+    --border-size: 2px;
+}
+.btn.btn-border-pop::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    border: var(--border-size) solid white;
+}
+.btn.btn-border-pop:hover::before,
+.btn.btn-border-pop:focus::before {
+    top: calc(var(--border-size) * -3);
+    left: calc(var(--border-size) * -3);
+    right: calc(var(--border-size) * -3);
+    bottom: calc(var(--border-size) * -3);
+}

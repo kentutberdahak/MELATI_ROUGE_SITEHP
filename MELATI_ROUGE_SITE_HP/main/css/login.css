@@ -1,0 +1,258 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Helvetica", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: url('../../photos/background.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
+/* Styles pour la barre de navigation */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.3rem 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+/* Styles pour la barre de navigation d'arriere-plan (effet blur)*/
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .1);
+    backdrop-filter: blur(50px);
+    z-index: -1;
+}
+
+/* Styles pour le logo */
+.logo img {
+    width: 50px;
+    height: auto;
+    filter: invert(1);
+}
+
+/* Styles pour que l'image du texte Harry Potter soit responsive */
+.center-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 85%;
+    height: auto;
+}
+.center-logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Styles pour la liste de navigation */
+.navbar a {
+    font-size: 1.15rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 2.5rem;
+    position: relative;
+}
+
+/* Hover effect sur la liste de navigation */
+.navbar a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    opacity: 0;
+}
+.navbar a:hover::after {
+    opacity: 1;
+}
+
+/* Checkbox du menu burger */
+#check {
+    display: none;
+}
+
+/* Styles pour l'icône du menu burger */
+.icons {
+    position: absolute;
+    right: 5%;
+    font-size: 2.8rem;
+    color: #fff;
+    cursor: pointer;
+    display: none;
+}
+
+/* Styles responsive */
+@media (max-width: 992px) {
+    .header {
+        padding: 1.3rem 5%;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Cacher hover effect */
+    .navbar a::after {
+        display: none;
+    }
+
+    /* Montrer/Cacher les icônes du menu burger */
+    .icons {
+        display: inline-flex;
+    }
+    #check:checked~.icons #menu-icon {
+        display: none;
+    }
+    .icons #close-icon {
+        display: none;
+    }
+    #check:checked~.icons #close-icon {
+        display: block;
+    }
+
+    /* Styles de la barre de navigation (effet blur)*/
+    .navbar {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 60%;
+        height: 0;
+        background: rgba(0, 0, 0, .1);
+        backdrop-filter: blur(50px);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+        overflow: hidden;
+    }
+    #check:checked~.navbar {
+        height: 50rem;
+    }
+
+    /* Styles des liens de la barre de navigation */
+    .navbar a {
+        display: block;
+        font-size: 1.1rem;
+        padding-right: 1rem;
+        margin: 1.5rem 0;
+        text-align: right;
+        font-size: 28px;
+        opacity: 1;
+    }
+}
+
+/* Styles flexbox */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Styles wrapper */
+.wrapper {
+    width: 420px;
+    background: transparent;
+    border: 2px solid rgba(225, 225, 255, .2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+}
+.wrapper .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+/* Styles des boites input */
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    outline: none;
+    border: 2px solid rgba(225, 225, 225, .2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: white;
+    padding: 20px 45px 20px 20px;
+}
+.input-box input::placeholder {
+    color: white;
+}
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+/* Styles remember-forgot */
+.wrapper .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: -15px 0 15px;
+}
+.remember-forgot label input {
+    accent-color: white;
+    margin-right: 3px;
+}
+.remember-forgot a {
+    color: white;
+    text-decoration: none;
+}
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+/* Styles du bouton */
+.wrapper .btn {
+    width: 100%;
+    height: 45px;
+    background: white;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Styles du register-link */
+.wrapper .register-link {
+    font-size: 14.5px;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+.register-link p a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+.register-link p a:hover {
+    text-decoration: underline;
+}

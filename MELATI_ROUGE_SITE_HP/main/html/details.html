@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Titre -->
+    <title>Harry Potter</title>
+    <!--  CSS Style -->
+    <link rel="stylesheet" href="../css/details.css"> 
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/2779a7423b.js" crossorigin="anonymous"></script>
+</head>
+
+<body> 
+    <header class="header">
+        <!-- Logo -->
+        <a href="homepage.html" class="logo">
+            <img src="../../photos/triangle.png" alt="Logo">
+        </a>
+
+        <!-- Menu burger -->
+        <input type="checkbox" id="check">
+        <!-- Icône du menu burger -->
+        <label for="check" class="icons">
+            <i class="fa-solid fa-bars" id="menu-icon"></i>
+            <i class="fa-solid fa-x" id="close-icon"></i>
+        </label>
+
+        <!-- Liste des liens de navigation -->
+        <nav class="navbar"> 
+            <a href="homepage.html">Home</a>
+            <a href="characters.html">Characters</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="wrapper">
+            <div id="character"></div>
+        </div>
+    </main>
+
+    <script>
+        function fetchCharacter() {
+            let url = window.location.search;
+            let slug = new URLSearchParams(url).get('slug');
+            return fetch('https://hp-api.lainocs.fr/characters/' + slug)
+                .then((response) => response.json());
+        }
+    
+        async function displayCharacter() {
+            try {
+                const data = await fetchCharacter();
+                document.querySelector('#character').innerHTML =
+                    `<h1>${data.name}</h1>
+                    <img src="${data.image}" alt="${data.name}">
+                    <p>Birthday: ${data.birthday.substring(0, 10)}</p>
+                    <p>Eyes: ${data.eyes}</p>
+                    <p>Blood: ${data.blood}</p>
+                    <p>Patronus: ${data.patronus}</p>
+                    <p>House: ${data.house}</p>
+                    <p>Role: ${data.role}</p>
+                    <a href="characters.html"><button>Back</button></a>`;
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    
+        displayCharacter();
+    </script>
+</body>
+</html>
